@@ -7,7 +7,7 @@
 ?>
 		<div id="wrapper" style="width:800px;height:550px;">
 			<div style="float: right;"><canvas id="myCanvas" style="border:1px solid black;background:white;"></canvas></div>
-			<div style="float:left;">
+			<div style="float:left;width:280px">
 				<div style="margin:5px">
 					<input id="player1" value="Player1" /><button id="registerpl1">registrieren</button><br />
 					<button id="pl1up" disabled="disabled">Spieler 1 hoch</button><button id="pl1dw" disabled="disabled">Spieler 1 runter</button><br />
@@ -25,6 +25,7 @@
 				<div style="margin:5px">
 					Spielstand: <span id="pointsstate">0:0</span>
 				</div>
+				<div style="margin:5px" id="errordiv"></div>
 			</div>
 		</div>
 		<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
@@ -148,7 +149,9 @@
 							return;
 						}
 						if (isjson) {
-							requestDone(null, JSON.parse(request.responseText), params);
+							var a = JSON.parse(request.responseText);
+							if(a.ERROR) $('#errordiv').append(a.ERROR+'</br>');
+							requestDone(null, a, params);
 						} else {
 							requestDone(null, request.responseText, params);
 						}
