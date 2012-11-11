@@ -1,6 +1,6 @@
 <?php
 		/**
-		 * @copyright	Copyright (C) René Martin, 2012. All rights reserved.
+		 * @copyright	Copyright (C) Renï¿½ Martin, 2012. All rights reserved.
 		 * @license		GNU General Public License version 2 or later; see LICENSE.txt
 		 **/
 	require_once('game.php');
@@ -59,7 +59,6 @@
 				if(in_array($sock,$read)){
 					for($i = 0;$i<$max;$i++){
 						if($client[$i]['sock']==null){
-							echo ".";
 							if(($client[$i]['sock'] = socket_accept($sock))<0){
 								$this->_consolelog("socket_accept() failed: ".socket_strerror($client[$i]['sock']));
 							} else {
