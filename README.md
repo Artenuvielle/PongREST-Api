@@ -1,67 +1,89 @@
-René Martin, Student der Medieninformatik (1. Semester) an der Fakultät Infomatik, Mathematik und Naturwissenschaften der HTWK Leipzig
-======================================================================================================================================
-
+RenÃ© Martin, Student der Medieninformatik (1. Semester) an der FakultÃ¤t Infomatik, Mathematik und Naturwissenschaften der HTWK Leipzig
 
 Dokumentation "Pong-REST-API", Coding Contest
+=============================================
 
 
-Eine der Aufgaben des 4. Coding-Contest (05. - 11.11.2012) ist es in PHP einen Server zu schreiben, welcher per REST-API Eingaben zu einem simluierten Pong spiel erhält, verwaltet und das gesamte Spiel simuliert.
-Diese Lösung basiert auf einem Apache-Server, welcher die REST-Anfragen entgegen nimmt und weiterleitet, sowie einen permanent laufendem PHP-Script, welches über einen Websocket die weitergeleiteten Informationen an die laufenden Spiele verteilt und diese bearbeitet.
+Eine der Aufgaben des 4. Coding-Contest (05. - 11.11.2012) ist es in PHP einen Server zu schreiben, welcher per REST-API Eingaben zu einem Pong Spiel erhÃ¤lt, verwaltet und das gesamte Spiel simuliert.
+Diese LÃ¶sung basiert auf einem Apache-Server, welcher die REST-Anfragen entgegennimmt und weiterleitet, sowie einen permanent laufendem PHP-Script, welches Ã¼ber einen Websocket die weitergeleiteten Informationen an die laufenden Spiele verteilt und diese bearbeitet.
 
 ->Einrichtung
 -------------
 
-Wie bereits genannt, wird ein Apache-Server benötigt, auf dem das Modul mod_rewrite aktiviert ist. Zum testen kann auch das integrierte Apache-Modul von XAMPP (http://www.apachefriends.org/de/xampp.html) benutzt werden (das Modul mod_rewrite ist hier automatisch aktiviert).
-Des weiteren sollte eine Konsole verfügbar sein, aus der PHP-Scripte ausgeführt werden können (alle Tests wurden auf der aktuellste PHP-Version durchgeführt).
-Alle Dateien dieses Git sollten in einem Unterverzeichniss des Apache-Roots liegen (im folgenden wird angenommen, dass dieses das Unterverzeichnis "contest/" ist und keinerlei Namensänderungen vorgenommen wurden).
-Zunächst muss die Datei "contest/config/config.php" angepasst werden. Darin wird der Port definiert, über welchen der Websocket laufen soll, wieviele Clients maximal gleichzeitig eine Anfrage an den Websocket machen und das Unterverzeichnis der API (in unserem Fall "contest/api/").
-Anschließend muss in der Datei "contest/api/.htaccess" die Zeile
-	RewriteBase /api/
-zu
-	RewriteBase /contest/api/
-verändert werden.
-Abschließend muss in der Konsole aus dem root-Verzeichnis des Apache-Server folgender Befehl eingegeben werden:
-	php contest/server/startserver.php
-Nun kann über die im Apache eingestellte URL entsprechende abfragen an die REST-API gemacht werden (z.B. GET an http://domain:port/contest/api/game/:key/status/)
+Wie bereits genannt, wird ein Apache-Server benÃ¶tigt, auf dem das Modul "mod_rewrite" aktiviert ist.
 
-Um später den Websocket-Server zu beenden muss in einer weiteren Konsole aus dem root-Verzeichnis der Aufruf
+Zum testen kann auch das integrierte Apache-Modul von XAMPP (http://www.apachefriends.org/de/xampp.html) benutzt werden (das Modul mod_rewrite ist hier automatisch aktiviert).
+
+Des weiteren sollte eine Konsole verfÃ¼gbar sein, aus der PHP-Scripte ausgefÃ¼hrt werden kÃ¶nnen (alle Tests wurden auf der aktuellste PHP-Version durchgefÃ¼hrt).
+
+Alle Dateien dieses Git sollten in einem Unterverzeichniss des Apache-roots liegen (im folgenden wird angenommen, dass dieses das Unterverzeichnis "contest/" ist und keinerlei NamensÃ¤nderungen vorgenommen wurden).
+
+ZunÃ¤chst muss die Datei "contest/config/config.php" angepasst werden. Darin wird der Port definiert, Ã¼ber welchen der Websocket laufen soll, wieviele Clients maximal gleichzeitig eine Anfrage an den Websocket machen kÃ¶nnen und das Unterverzeichnis der API (in unserem Fall "contest/api/").
+
+AnschlieÃŸend muss in der Datei "contest/api/.htaccess" die Zeile
+
+	RewriteBase /api/
+
+zu
+
+	RewriteBase /contest/api/
+
+verÃ¤ndert werden.
+
+AbschlieÃŸend muss in der Konsole aus dem root-Verzeichnis des Apache-Server folgender Befehl eingegeben werden:
+
+	php contest/server/startserver.php
+
+Nun kann Ã¼ber die im Apache eingestellte URL entsprechende abfragen an die REST-API gemacht werden (z.B. GET an http://domain:port/contest/api/game/:key/status/)
+
+Um spÃ¤ter den Websocket-Server zu beenden muss in einer weiteren Konsole aus dem root-Verzeichnis der Aufruf
+
 	php contest/server/stopserver.php
+
 gemacht werden.
 
 
 -> Testen
 ---------
 
-Zum Testen kann die Seite http://domain:port/contest/api/game/:key/ benutzt werden, welche eine graphische Oberfläche des simulierten Spiels darstellt.
-Des weiteren wurde zur Benutzerfreundlichkeit eine erweiterte grafische Oberfläche gestaltet, welche man unter http://domain:port/contest/examplepage/ findet.
+Zum Testen kann die Seite http://domain:port/contest/api/game/:key/ benutzt werden, welche eine graphische OberflÃ¤che des simulierten Spiels darstellt.
+
+Des weiteren wurde zur Benutzerfreundlichkeit eine erweiterte grafische OberflÃ¤che gestaltet, welche man unter http://domain:port/contest/examplepage/ findet.
 
 
--> Selbstständigkeitserklärung
+-> SelbststÃ¤ndigkeitserklÃ¤rung
 ------------------------------
 
 Jeglicher Quellcode (PHP, Javascript und HTML) wurde von mir selbst erstellt, mit den Ausnahmen der Inhalte der Dateien "server/game.php" und "api/game_page.php" basiert auf der Pongengine von Stephan Hoyer, dem JQuery-Framework und dem genutzten Apache-Server.
 
 
--> Erklärung der Dateien
+-> Erklï¿½rung der Dateien
 ------------------------
 
 	api/
-		.htaccess 	// Enthält Regeln für den Apache-Server zum routen aller nicht existierenden Pfade auf die recieve.php 
-		recieve.php	// PHP-Skript zum interpretieren des Anfrage-Pfads und Steuerung der Rückgabe vom Websocket-Server
-		game_page.php	// Enthält Funktion zum rendern der einfachen graphischen Oberfläche zum testen
+
+		.htaccess 	// EnthÃ¤lt Regeln fÃ¼r den Apache-Server zum routen aller nicht existierenden Pfade auf die recieve.php 
+
+		recieve.php	// PHP-Skript zum interpretieren des Anfrage-Pfads und Steuerung der Rï¿½ckgabe vom Websocket-Server
+		
+		game_page.php	// EnthÃ¤lt Funktion zum rendern der einfachen graphischen OberflÃ¤che zum testen
 
 	api/
-		index.php	// Beispielsseite, auf der die geschriebene API mit einer erweiterten graphischen Oberfläche zum testen eingebunden wurde
+		
+		index.php	// Beispielsseite, auf der die geschriebene API mit einer erweiterten graphischen OberflÃ¤che zum testen eingebunden wurde
 
 	config/
+		
 		config.php	// wichtige Grundeinstellungen, auf die mehrere Skripte zugreifen
 
 	server/
-		startserver.php	// PHP-Skript zum starten des Websocket-Server, welcher alle Instanzen der Klasse Game verwaltet (sollte von der Konsole ausgeführt werden)
+		
+		startserver.php	// PHP-Skript zum starten des Websocket-Server, welcher alle Instanzen der Klasse Game verwaltet (sollte von der Konsole ausgefÃ¼hrt werden)
+		
 		stopserver.php	// PHP-Skript zum stopen eines laufenden Websocket-Server
 
-REST-API
---------
+->REST-API
+----------
 
 ### Erhalte Spiel Status
 
@@ -75,7 +97,7 @@ REST-API
 
 * Route: POST contest/api/game/:key/start
 
-### Logt Spieler ein (gibt geheimen Spieler-String zurück)
+### Logt Spieler ein (gibt geheimen Spieler-String zurï¿½ck)
 
 * Route: PUT contest/api/game/:key/player/:playername/
 
@@ -88,5 +110,7 @@ REST-API
 * Route: POST contest/api/game/:key/player/:playername/:secret/down/
 
 
-René Martin, 11.11.2012
+
+RenÃ© Martin, 11.11.2012
+
 Kontakt: renem1@gmx.net
