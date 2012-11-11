@@ -54,7 +54,7 @@
 		}
 		
 		public function getStatus($p) { // Path: /game/:key/status/
-			$this->_writeToSocket("return(CheckForGame('$p[0]',\$games)->getStatus());");
+			$this->_writeToSocket("return(\$this->_CheckForGame('$p[0]',\$games)->getStatus());");
 		}
 		
 		public function getConfig($p) { // Path: /game/:key/config/
@@ -62,19 +62,19 @@
 		}
 		
 		public function postStart($p) { // Path: /game/:key/config/
-			$this->_writeToSocket("return(CheckForGame('$p[0]',\$games)->start());");
+			$this->_writeToSocket("return(\$this->_CheckForGame('$p[0]',\$games)->start());");
 		}
 		
 		public function putPlayer($p) { // Path: /game/:key/player/:playername/
-			$this->_writeToSocket("return(CheckForGame('$p[0]',\$games)->loginPlayer('$p[1]'));");
+			$this->_writeToSocket("return(\$this->_CheckForGame('$p[0]',\$games)->loginPlayer('$p[1]'));");
 		}
 		
 		public function postPlayerDown($p) { // Path: /game/:key/player/:playername/:secret/down/
-			$this->_writeToSocket("return(CheckForGame('$p[0]',\$games)->moveDown('$p[1]','$p[2]'));");
+			$this->_writeToSocket("return(\$this->_CheckForGame('$p[0]',\$games)->moveDown('$p[1]','$p[2]'));");
 		}
 		
 		public function postPlayerUp($p) { // Path: /game/:key/player/:playername/:secret/up/
-			$this->_writeToSocket("return(CheckForGame('$p[0]',\$games)->moveUp('$p[1]','$p[2]'));");
+			$this->_writeToSocket("return(\$this->_CheckForGame('$p[0]',\$games)->moveUp('$p[1]','$p[2]'));");
 		}
 		
 		public function getHTML($p) { // Path: /game/:key/
