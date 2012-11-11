@@ -64,9 +64,11 @@ Jeglicher Quellcode (PHP, Javascript und HTML) wurde von mir selbst erstellt, mi
 
 		.htaccess 	// Enthält Regeln für den Apache-Server zum routen aller nicht existierenden Pfade auf die recieve.php 
 
-		recieve.php	// PHP-Skript zum interpretieren des Anfrage-Pfads und Steuerung der R�ckgabe vom Websocket-Server
+		recieve.php	// PHP-Skript zum initialisieren des REST-Handlings
 		
-		game_page.php	// Enthält Funktion zum rendern der einfachen graphischen Oberfläche zum testen
+		gamepage.php	// Enthält Funktion zum rendern der einfachen graphischen Oberfläche zum testen
+		
+		serverconnect.php	// Enthält Klasse, welche REST-Anfragen mit callbacks auf den Websocket umleitet
 
 	api/
 		
@@ -78,9 +80,14 @@ Jeglicher Quellcode (PHP, Javascript und HTML) wurde von mir selbst erstellt, mi
 
 	server/
 		
-		startserver.php	// PHP-Skript zum starten des Websocket-Server, welcher alle Instanzen der Klasse Game verwaltet (sollte von der Konsole ausgeführt werden)
+		startserver.php	// PHP-Skript zum starten des Websocket-Server (sollte von der Konsole ausgeführt werden)
 		
 		stopserver.php	// PHP-Skript zum stopen eines laufenden Websocket-Server
+		
+		game.php	// Enthält Klasse, die ein Spiel simuliert
+		
+		server.php	// Enthält Klasse, welche alle Instanzen der Klasse Game verwaltet und vom Websocket Befehle entgegen nimmt
+
 
 ->REST-API
 ----------
