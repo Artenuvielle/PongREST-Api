@@ -57,7 +57,7 @@ Des weiteren wurde zur Benutzerfreundlichkeit eine erweiterte grafische Oberflä
 Jeglicher Quellcode (PHP, Javascript und HTML) wurde von mir selbst erstellt, mit den Ausnahmen der Inhalte der Dateien "server/game.php" und "api/game_page.php" basiert auf der Pongengine von Stephan Hoyer, dem JQuery-Framework und dem genutzten Apache-Server.
 
 
--> Erkl�rung der Dateien
+-> Erklärung der Dateien
 ------------------------
 
 	api/
