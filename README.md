@@ -30,15 +30,15 @@ zu
 
 verändert werden.
 
-Abschließend muss in der Konsole aus dem root-Verzeichnis des Apache-Server folgender Befehl eingegeben werden:
+Abschließend muss in der Konsole aus dem server-Unterverzeichnis des Apache-Server folgender Befehl eingegeben werden (php.exe muss im Enviroment Path enthalten sein):
 
-	php contest/server/startserver.php
+	php startserver.php
 
 Nun kann über die im Apache eingestellte URL entsprechende abfragen an die REST-API gemacht werden (z.B. GET an http://domain:port/contest/api/game/:key/status/)
 
-Um später den Websocket-Server zu beenden muss in einer weiteren Konsole aus dem root-Verzeichnis der Aufruf
+Um später den Websocket-Server zu beenden muss in einer weiteren Konsole aus dem server-Unterverzeichnis der Aufruf
 
-	php contest/server/stopserver.php
+	php stopserver.php
 
 gemacht werden.
 
